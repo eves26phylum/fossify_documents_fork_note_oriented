@@ -56,33 +56,6 @@ internal fun LazyListScope.focusedContent(
     }
 }
 
-private fun LazyListScope.recentSection(
-    uiState: DocumentsUiState,
-    actions: DocumentsMainActions,
-) {
-    if (uiState.recentDocuments.isEmpty()) {
-        return
-    }
-
-    item(key = "recent_title") {
-        SectionHeader(
-            title = stringResource(id = R.string.recent),
-            actionLabel = stringResource(id = R.string.view_all),
-            onActionClick = actions.onShowRecent,
-        )
-    }
-    documentRows(
-        keyPrefix = "recent",
-        documents = uiState.recentDocuments.take(HOME_RECENT_LIMIT),
-        showLocation = false,
-        uiState = uiState,
-        actions = actions,
-    )
-    item(key = "recent_space") {
-        Spacer(modifier = Modifier.height(16.dp))
-    }
-}
-
 private fun LazyListScope.foldersSection(
     uiState: DocumentsUiState,
     actions: DocumentsMainActions,
