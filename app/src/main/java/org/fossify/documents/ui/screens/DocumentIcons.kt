@@ -75,66 +75,6 @@ internal fun DocumentEntry.metaLine(showOpenedFallback: Boolean): String {
     }
 }
 
-@Composable
-private fun DocumentKind.iconSpec(): DocumentIconSpec {
-    val isDark = isDocumentsDarkTheme()
-    return when (this) {
-        DocumentKind.PDF -> themedIconSpec(
-            icon = Icons.Filled.PictureAsPdf,
-            isDark = isDark,
-            lightContainer = Color(0xFFF8DCDC),
-            lightContent = Color(0xFFE52620),
-            darkContainer = Color(0xFF55302F),
-            darkContent = Color(0xFFFFDAD7),
-        )
-
-        DocumentKind.DOCX -> themedIconSpec(
-            icon = Icons.AutoMirrored.Filled.Article,
-            isDark = isDark,
-            lightContainer = Color(0xFFDCEAFF),
-            lightContent = Color(0xFF185ABD),
-            darkContainer = Color(0xFF243F60),
-            darkContent = Color(0xFFD5E3FF),
-        )
-
-        DocumentKind.TEXT -> DocumentIconSpec(
-            icon = Icons.AutoMirrored.Filled.TextSnippet,
-            containerColor = SimpleTheme.colorScheme.primary.copy(alpha = primaryTintAlpha()),
-            contentColor = SimpleTheme.colorScheme.onSurface,
-        )
-
-        DocumentKind.MARKDOWN -> DocumentIconSpec(
-            icon = Icons.Filled.Description,
-            containerColor = SimpleTheme.colorScheme.primary.copy(alpha = primaryTintAlpha()),
-            contentColor = SimpleTheme.colorScheme.primary,
-        )
-
-        DocumentKind.CSV -> themedIconSpec(
-            icon = Icons.Filled.TableChart,
-            isDark = isDark,
-            lightContainer = Color(0xFFD8F3E2),
-            lightContent = Color(0xFF167044),
-            darkContainer = Color(0xFF1E4935),
-            darkContent = Color(0xFFB7E9C8),
-        )
-
-        DocumentKind.HTML -> themedIconSpec(
-            icon = Icons.Filled.Code,
-            isDark = isDark,
-            lightContainer = Color(0xFFFFE2D3),
-            lightContent = Color(0xFFB84218),
-            darkContainer = Color(0xFF5A3525),
-            darkContent = Color(0xFFFFDBCA),
-        )
-
-        DocumentKind.OTHER -> DocumentIconSpec(
-            icon = Icons.Filled.Description,
-            containerColor = SimpleTheme.colorScheme.onSurface.copy(alpha = if (isDark) 0.18f else 0.08f),
-            contentColor = SimpleTheme.colorScheme.onSurface.copy(alpha = 0.72f),
-        )
-    }
-}
-
 private fun themedIconSpec(
     icon: ImageVector,
     isDark: Boolean,
