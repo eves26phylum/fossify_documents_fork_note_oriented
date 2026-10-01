@@ -85,7 +85,6 @@ internal fun DocumentGridCard(
                     .padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                DocumentKindIcon(kind = document.kind)
                 DocumentGridCardText(document = document, showLocation = showLocation)
             }
             if (selected) {

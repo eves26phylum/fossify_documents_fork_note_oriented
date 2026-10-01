@@ -34,33 +34,6 @@ import org.fossify.documents.models.DocumentFilter
 import org.fossify.documents.models.DocumentKind
 
 @Composable
-internal fun DocumentKindIcon(kind: DocumentKind) {
-    val iconSpec = kind.iconSpec()
-
-    Surface(
-        modifier = Modifier.size(48.dp),
-        shape = RoundedCornerShape(8.dp),
-        color = iconSpec.containerColor,
-        contentColor = iconSpec.contentColor,
-    ) {
-        Box(contentAlignment = Alignment.Center) {
-            if (kind == DocumentKind.MARKDOWN) {
-                Text(
-                    text = "M↓",
-                    style = SimpleTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                )
-            } else {
-                Icon(
-                    imageVector = iconSpec.icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(26.dp),
-                )
-            }
-        }
-    }
-}
-
-@Composable
 internal fun FolderIcon() {
     Surface(
         modifier = Modifier.size(48.dp),

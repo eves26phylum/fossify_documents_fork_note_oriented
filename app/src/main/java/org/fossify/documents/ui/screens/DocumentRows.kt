@@ -60,7 +60,6 @@ internal fun DocumentRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        DocumentKindIcon(kind = document.kind)
         DocumentRowText(
             document = document,
             showLocation = showLocation,
@@ -120,20 +119,29 @@ private fun DocumentRowText(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
+        Row() {
+            Text(
+                text = document.name,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                color = SimpleTheme.colorScheme.onSurface,
+                style = SimpleTheme.typography.titleMedium.copy(fontWeight = FontWeight.Medium),
+            )
+            Text(
+                text = document.metaLine(showOpenedFallback = true),
+                modifier = Modifier.padding(start = 6.dp, top = 3.dp),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                color = SimpleTheme.colorScheme.onSurface.copy(alpha = 0.66f),
+                style = SimpleTheme.typography.bodyMedium,
+            )
+        }
         Text(
-            text = document.name,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            color = SimpleTheme.colorScheme.onSurface,
-            style = SimpleTheme.typography.titleMedium.copy(fontWeight = FontWeight.Medium),
-        )
-        Text(
-            text = document.metaLine(showOpenedFallback = true),
-            modifier = Modifier.padding(top = 3.dp),
-            maxLines = 1,
+            text = "lorem ipsum... the quick brown fox jumps over the lazy dog...",
+            maxLines = 3,
             overflow = TextOverflow.Ellipsis,
             color = SimpleTheme.colorScheme.onSurface.copy(alpha = 0.66f),
-            style = SimpleTheme.typography.bodyMedium,
+            style = SimpleTheme.typography.bodyMedium
         )
         if (showLocation && document.location.isNotBlank()) {
             Text(
