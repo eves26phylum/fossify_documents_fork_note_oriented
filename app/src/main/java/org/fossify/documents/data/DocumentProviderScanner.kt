@@ -213,16 +213,16 @@ internal class DocumentProviderScanner(
         return input.reader(Charsets.UTF_8).use {
             val charsRead = it.read(charBuffer)
             if (charsRead <= 0) // if charsRead is -1, return an empty string
-                ""
+                "Empty file"
             else
                 String(charBuffer, 0, charsRead)
         }
     }
     private fun readPreamble(uri: Uri): String {
         return try {
-            appContext.contentResolver.openInputStream(uri)?.use { readChars(it) } ?: ""
+            appContext.contentResolver.openInputStream(uri)?.use { readChars(it) } ?: "Empty file"
         } catch (_: IOException) {
-            ""
+            "Error while reading file"
         }
     }
 

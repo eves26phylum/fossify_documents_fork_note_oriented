@@ -13,7 +13,7 @@ data class DocumentEntry(
     val lastOpened: Long,
     val lastPage: Int = 0,
     val isFavorite: Boolean = false,
-    val preamble: String
+    val preamble: String = "Preamble not loaded"
 ) {
     fun toJson() = JSONObject().apply {
         put(KEY_URI, uri)
