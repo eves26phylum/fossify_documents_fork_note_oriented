@@ -88,7 +88,7 @@ class TextDocumentActivity : BaseComposeActivity() {
                 TextDocumentScreen(
                     uiState = uiState,
                     onBack = requestClose,
-                    onTextChange = fun(varargs args) {
+                    onTextChange = fun(vararg args) {
                         viewModel.save()
                         viewModel.onTextChange(args)
                     },
