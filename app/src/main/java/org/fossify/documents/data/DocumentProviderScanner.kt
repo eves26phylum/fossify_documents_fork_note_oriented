@@ -12,14 +12,13 @@ import org.fossify.documents.models.DocumentEntry
 import org.fossify.documents.models.DocumentFolder
 import org.fossify.documents.models.DocumentKind
 import java.io.IOException
+import java.io.InputStream
 
+private const val CHARS_INTO_FILE = 200;
 @Suppress("TooManyFunctions")
 internal class DocumentProviderScanner(
     context: Context,
 ) {
-    object FileReaderConstants {
-        const val CHARS_INTO_FILE = 200;
-    }
     private val appContext = context.applicationContext
     private val locationResolver = DocumentLocationResolver(appContext)
 
@@ -211,8 +210,8 @@ internal class DocumentProviderScanner(
     )
     private fun readChars(input: InputStream): String {
         val charBuffer = CharArray(CHARS_INTO_FILE)
-        return input.reader(Charsets.UTF_8).use { reader ->
-            val charsRead = reader.read(charBuffer)
+        return input.reader(Charsets.UTF_8).use {
+            val charsRead = it.read(charBuffer)
             if (charsRead <= 0) // if charsRead is -1, return an empty string
                 ""
             else
