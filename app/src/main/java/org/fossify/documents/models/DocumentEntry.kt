@@ -60,7 +60,7 @@ data class DocumentEntry(
                     lastOpened = json.optLong(KEY_LAST_OPENED, 0L),
                     lastPage = json.optInt(KEY_LAST_PAGE, 0),
                     isFavorite = json.optBoolean(KEY_IS_FAVORITE, false),
-                    preamble = json.optString(preamble)
+                    preamble = json.optString(KEY_PREAMBLE)
                 )
             }
         }

@@ -13,9 +13,13 @@ import org.fossify.documents.models.DocumentFolder
 import org.fossify.documents.models.DocumentKind
 import java.io.IOException
 
+@Suppress("TooManyFunctions")
 internal class DocumentProviderScanner(
     context: Context,
 ) {
+    object FileReaderConstants {
+        const val CHARS_INTO_FILE = 200;
+    }
     private val appContext = context.applicationContext
     private val locationResolver = DocumentLocationResolver(appContext)
 
@@ -39,6 +43,7 @@ internal class DocumentProviderScanner(
             lastOpened = previous?.lastOpened ?: 0L,
             lastPage = previous?.lastPage ?: 0,
             isFavorite = previous?.isFavorite ?: false,
+            preamble = "meow"
         )
     }
 
@@ -128,6 +133,7 @@ internal class DocumentProviderScanner(
         val mimeType = getStringOrNull(DocumentsContract.Document.COLUMN_MIME_TYPE).orEmpty()
         val name = getStringOrNull(DocumentsContract.Document.COLUMN_DISPLAY_NAME).orEmpty()
         val kind = DocumentKind.fromName(name, mimeType)
+        val preamble = readPreamble(treeUri)
 
         return getStringOrNull(DocumentsContract.Document.COLUMN_DOCUMENT_ID)
             ?.takeIf {
@@ -144,6 +150,7 @@ internal class DocumentProviderScanner(
                     size = getLongOrNull(DocumentsContract.Document.COLUMN_SIZE),
                     lastModified = getLongOrNull(DocumentsContract.Document.COLUMN_LAST_MODIFIED),
                     lastOpened = 0L,
+                    preamble = preamble
                 )
             }
     }
@@ -202,6 +209,23 @@ internal class DocumentProviderScanner(
         val folders: List<DocumentFolder> = emptyList(),
         val documents: List<DocumentEntry> = emptyList(),
     )
+    private fun readChars(input: InputStream): String {
+        val charBuffer = CharArray(CHARS_INTO_FILE)
+        return input.reader(Charsets.UTF_8).use { reader ->
+            val charsRead = reader.read(charBuffer)
+            if (charsRead <= 0) // if charsRead is -1, return an empty string
+                ""
+            else
+                String(charBuffer, 0, charsRead)
+        }
+    }
+    private fun readPreamble(uri: Uri): String {
+        return try {
+            appContext.contentResolver.openInputStream(uri)?.use { readChars(it) } ?: ""
+        } catch (_: IOException) {
+            ""
+        }
+    }
 
 }
 
@@ -212,6 +236,7 @@ private fun Uri.getDocumentIdForChildren(): String? {
         DocumentsContract.getTreeDocumentId(this)
     }.getOrNull()
 }
+
 
 private fun Context.getFolderItemCount(folderUri: String): Int {
     val treeUri = folderUri.toUri()

@@ -137,7 +137,7 @@ private fun DocumentRowText(
             )
         }
         Text(
-            text = "lorem ipsum... the quick brown fox jumps over the lazy dog...",
+            text = document.preamble,
             maxLines = 3,
             overflow = TextOverflow.Ellipsis,
             color = SimpleTheme.colorScheme.onSurface.copy(alpha = 0.66f),
