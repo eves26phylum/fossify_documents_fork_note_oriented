@@ -40,9 +40,6 @@ import org.fossify.documents.ui.theme.DocumentsAppThemeSurface
 import org.fossify.documents.viewmodels.TextDocumentViewModel
 
 class TextDocumentActivity : BaseComposeActivity() {
-    private val saveMutex = Mutex()
-    private var currentSaves = 0
-
     private val viewModel by lazy {
         ViewModelProvider(this)[TextDocumentViewModel::class.java]
     }
