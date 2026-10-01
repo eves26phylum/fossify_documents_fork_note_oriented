@@ -89,8 +89,9 @@ class TextDocumentActivity : BaseComposeActivity() {
                     uiState = uiState,
                     onBack = requestClose,
                     onTextChange = fun(vararg args) {
+                        var return_val = viewModel.onTextChange(args)
                         viewModel.save()
-                        viewModel.onTextChange(args)
+                        return_val
                     },
                     onSave = { viewModel.save() },
                     onOpenWith = { openWith(uri) },
