@@ -30,6 +30,7 @@ internal class DocumentProviderScanner(
             ?: appContext.getFilenameFromUri(uri).takeIf { it.isNotBlank() }
             ?: uri.lastPathSegment.orEmpty()
         val kind = DocumentKind.fromName(name, mimeType)
+        val preamble = readPreamble(uri)
 
         return DocumentEntry(
             uri = uri.toString(),
@@ -42,7 +43,7 @@ internal class DocumentProviderScanner(
             lastOpened = previous?.lastOpened ?: 0L,
             lastPage = previous?.lastPage ?: 0,
             isFavorite = previous?.isFavorite ?: false,
-            preamble = "meow"
+            preamble = preamble
         )
     }
 
