@@ -38,8 +38,6 @@ import org.fossify.documents.ui.screens.TextDocumentScreen
 import org.fossify.documents.ui.screens.coerceDocumentTextZoom
 import org.fossify.documents.ui.theme.DocumentsAppThemeSurface
 import org.fossify.documents.viewmodels.TextDocumentViewModel
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
 
 class TextDocumentActivity : BaseComposeActivity() {
     private val saveMutex = Mutex()
@@ -93,17 +91,7 @@ class TextDocumentActivity : BaseComposeActivity() {
                 TextDocumentScreen(
                     uiState = uiState,
                     onBack = requestClose,
-                    onTextChange = fun(vararg args) {
-                        var mySave = ++currentSaves
-                        // yield save saveRunning while mySave is currentSaves
-                        saveMutex.withLock {
-
-                        }
-                        var return_val = viewModel.onTextChange(args)
-                        viewModel.save()
-                        saveRunning = false
-                        return_val
-                    },
+                    onTextChange = viewModel::onTextChange,
                     onSave = { viewModel.save() },
                     onOpenWith = { openWith(uri) },
                     onPreviewChange = viewModel::setPreviewEnabled,
