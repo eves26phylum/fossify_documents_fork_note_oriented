@@ -3,6 +3,7 @@ It's mostly the same, except for a couple of changes for improving the usability
 1. It removes icons that are infront of the cards/rows.
 2. It adds a small preview of what is inside each markdown file, under the title. (WIP)
 3. It allows changing the document's title, directly from Fossify Documents. (WIP)
+4. Every keystroke typed is saved to the document. No manually saving required. (WIP)
 
 Find the original Fossify Documents here:
 https://github.com/FossifyOrg/Documents/

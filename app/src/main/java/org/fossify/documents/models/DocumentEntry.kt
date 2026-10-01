@@ -13,6 +13,7 @@ data class DocumentEntry(
     val lastOpened: Long,
     val lastPage: Int = 0,
     val isFavorite: Boolean = false,
+    val preamble: String
 ) {
     fun toJson() = JSONObject().apply {
         put(KEY_URI, uri)
@@ -24,6 +25,7 @@ data class DocumentEntry(
         put(KEY_LAST_OPENED, lastOpened)
         put(KEY_LAST_PAGE, lastPage)
         put(KEY_IS_FAVORITE, isFavorite)
+        put(KEY_PREAMBLE, preamble)
     }
 
     companion object {
@@ -36,6 +38,7 @@ data class DocumentEntry(
         private const val KEY_LAST_OPENED = "last_opened"
         private const val KEY_LAST_PAGE = "last_page"
         private const val KEY_IS_FAVORITE = "is_favorite"
+        private const val KEY_PREAMBLE = "preamble"
 
         fun fromJson(json: JSONObject): DocumentEntry? {
             val uri = json.optString(KEY_URI)
@@ -57,6 +60,7 @@ data class DocumentEntry(
                     lastOpened = json.optLong(KEY_LAST_OPENED, 0L),
                     lastPage = json.optInt(KEY_LAST_PAGE, 0),
                     isFavorite = json.optBoolean(KEY_IS_FAVORITE, false),
+                    preamble = json.optString(preamble)
                 )
             }
         }
