@@ -88,7 +88,10 @@ class TextDocumentActivity : BaseComposeActivity() {
                 TextDocumentScreen(
                     uiState = uiState,
                     onBack = requestClose,
-                    onTextChange = viewModel::onTextChange,
+                    onTextChange = fun(varargs args) {
+                        viewModel.save()
+                        viewModel.onTextChange(args)
+                    },
                     onSave = { viewModel.save() },
                     onOpenWith = { openWith(uri) },
                     onPreviewChange = viewModel::setPreviewEnabled,
