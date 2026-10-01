@@ -133,7 +133,6 @@ internal class DocumentProviderScanner(
         val mimeType = getStringOrNull(DocumentsContract.Document.COLUMN_MIME_TYPE).orEmpty()
         val name = getStringOrNull(DocumentsContract.Document.COLUMN_DISPLAY_NAME).orEmpty()
         val kind = DocumentKind.fromName(name, mimeType)
-        val preamble = readPreamble(treeUri)
 
         return getStringOrNull(DocumentsContract.Document.COLUMN_DOCUMENT_ID)
             ?.takeIf {
@@ -141,8 +140,10 @@ internal class DocumentProviderScanner(
                         kind != DocumentKind.OTHER
             }
             ?.let { documentId ->
+                var uri = DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId);
+                var preamble = readPreamble(uri)
                 DocumentEntry(
-                    uri = DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId).toString(),
+                    uri = uri.toString(),
                     name = name,
                     mimeType = mimeType,
                     kind = kind,
