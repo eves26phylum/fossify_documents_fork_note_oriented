@@ -1,9 +1,9 @@
 This is a fork of Fossify Documents that changes things I think would be more suitable for a note-taking app.
 It's mostly the same, except for a couple of changes for improving the usability as a note-taking app.
 1. It removes icons that are infront of the cards/rows.
-2. It adds a small preview of what is inside each markdown file, under the title. (WIP)
+2. It adds a small preview of what is inside each markdown file, under the title.
 3. It allows changing the document's title, directly from Fossify Documents. (WIP)
-4. Every keystroke typed is saved to the document. No manually saving required. (WIP)
+4. Every keystroke typed is saved to the document. No manually saving required. (Partial)
 
 Find the original Fossify Documents here:
 https://github.com/FossifyOrg/Documents/
