@@ -14,7 +14,7 @@ import org.fossify.documents.models.DocumentKind
 import java.io.IOException
 import java.io.InputStream
 
-private const val CHARS_INTO_FILE = 200;
+private const val CHARS_INTO_FILE = 512;
 @Suppress("TooManyFunctions")
 internal class DocumentProviderScanner(
     context: Context,
