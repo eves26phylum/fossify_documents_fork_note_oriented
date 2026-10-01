@@ -99,9 +99,3 @@ internal fun DocumentFilter.iconTint(): Color {
         DocumentFilter.MARKDOWN -> SimpleTheme.colorScheme.onSurface
     }
 }
-
-private data class DocumentIconSpec(
-    val icon: ImageVector,
-    val containerColor: Color,
-    val contentColor: Color,
-)
