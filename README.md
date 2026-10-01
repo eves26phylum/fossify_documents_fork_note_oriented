@@ -7,6 +7,8 @@ It's mostly the same, except for a couple of changes for improving the usability
 Find the original Fossify Documents here:
 https://github.com/FossifyOrg/Documents/
 
+The rest of the README sits unchanged from the original repository from this point.
+
 # Fossify Documents
 
 <img alt="Logo" src="graphics/icon.webp" width="120" />
