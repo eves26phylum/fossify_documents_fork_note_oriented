@@ -41,8 +41,6 @@ internal fun LazyListScope.homeContent(
         }
         return
     }
-
-    recentSection(uiState = uiState, actions = actions)
     favoritesSection(uiState = uiState, actions = actions)
     foldersSection(uiState = uiState, actions = actions)
 }
