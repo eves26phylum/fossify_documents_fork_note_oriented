@@ -75,21 +75,6 @@ internal fun DocumentEntry.metaLine(showOpenedFallback: Boolean): String {
     }
 }
 
-private fun themedIconSpec(
-    icon: ImageVector,
-    isDark: Boolean,
-    lightContainer: Color,
-    lightContent: Color,
-    darkContainer: Color,
-    darkContent: Color,
-): DocumentIconSpec {
-    return DocumentIconSpec(
-        icon = icon,
-        containerColor = if (isDark) darkContainer else lightContainer,
-        contentColor = if (isDark) darkContent else lightContent,
-    )
-}
-
 private fun DocumentKind.shortLabel(): String {
     return when (this) {
         DocumentKind.PDF -> "PDF"
